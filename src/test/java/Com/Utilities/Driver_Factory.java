@@ -27,7 +27,7 @@ public class Driver_Factory {
 			System.out.println("Unable to launch Browser....Error");
 		}
 		
-		
+		driver.manage().window().maximize();
 		return driver;
 	}
 }

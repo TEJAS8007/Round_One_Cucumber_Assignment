@@ -84,7 +84,7 @@ public class SignUp_Page {
 	    WaitUtils.WaitForElementToclick(confirm_button, driver);    
 	    WebElement confirmbutton = driver.findElement(confirm_button);
 	    
-	    // ✅ using JavScriptExecutor to avoid element.clickInterceptException
+	    // ✅ using JavScriptExecutor to avoid element.clickInterceptExceptionsD
 	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", confirmbutton);
 	    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", confirmbutton);
 	}

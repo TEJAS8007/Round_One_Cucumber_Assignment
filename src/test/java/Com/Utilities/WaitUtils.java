@@ -1,9 +1,17 @@
 package Com.Utilities;
 
 import java.awt.Frame;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,6 +53,19 @@ public class WaitUtils {
 	    } finally {
 	        
 	        driver.switchTo().defaultContent();
+	    }
+	}
+	
+	public static void takeScreenshot(String name,WebDriver driver) {
+	    File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+	    String fileName = "screenshots/" + name + "_" + timestamp + ".png";
+
+	    try {
+	        FileUtils.copyFile(src, new File(fileName));
+	       
+	    } catch (IOException e) {
+	        System.out.println("Failure Capturing Screenshots......");
 	    }
 	}
 

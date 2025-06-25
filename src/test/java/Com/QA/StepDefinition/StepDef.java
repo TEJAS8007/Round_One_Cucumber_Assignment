@@ -49,8 +49,12 @@ public class StepDef {
 
 	@AfterAll
 	public static void tear_Down() {
-		//driver.quit();
-		log.debug("--------------- Test Suite Ended ----------------");
+	    WaitUtils.takeScreenshot("Final_State",driver);
+
+	    if (driver != null) {
+	        driver.quit();
+	    }
+	    log.debug("--------------- Test Suite Ended ----------------");
 	}
 
 	// === Step Definitions ===
@@ -89,12 +93,14 @@ public class StepDef {
 	public void user_enter_email_address() {
 		sign.Enter_Email(Email);
 		log.info("Email entered successfully....");
+		System.out.println("------------------------------------------------"+Email);
 	}
 
 	@When("user enter password")
 	public void user_enter_password() {
 		sign.Enter_Password(pass);
 		log.info("Password entered successfully....");
+		System.out.println("------------------------------------------------"+pass);
 	}
 
 	@When("user confirm entered password")
@@ -124,12 +130,14 @@ public class StepDef {
 	public void user_enter_login_email() {
 		login.enter_login_un(Email);
 		log.info("Login email entered....");
+		System.out.println("------------------------------------------------"+Email);
 	}
 
 	@Then("user enter login_password")
 	public void user_enter_login_password() {
 		login.enter_login_ps(pass);
 		log.info("Login password entered....");
+		System.out.println("------------------------------------------------"+pass);
 	}
 
 	@Then("login should be success")
