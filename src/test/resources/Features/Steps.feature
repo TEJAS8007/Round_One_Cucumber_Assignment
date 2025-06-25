@@ -7,9 +7,9 @@
 #Then: To observe outcomes or validation
 
 Feature: Validating user login flow
-Scenario: Creating User Account on Application under Test
 
 @Create_Account
+Scenario: Creating User Account on Application under Test
 Given user should open application
 When user verify title of Application
 When user  click on creteAccount
@@ -22,7 +22,8 @@ Then user click on create Account button
 Then Account creation should be success
 
 @Login
+Scenario: Login user into Application under Test
 Given user click on SignIn button
-When user enter email 
-Then user enter password
+When user enter login_email 
+Then user enter login_password
 Then login should be success
