@@ -8,6 +8,7 @@
 
 Feature: Validating user login flow
 
+@Flow
 @Create_Account
 Scenario: Creating User Account on Application under Test
 Given user should open application
@@ -21,6 +22,7 @@ When user confirm entered password
 Then user click on create Account button
 Then Account creation should be success
 
+@Flow
 @Login
 Scenario: Login user into Application under Test
 Given user click on SignIn button

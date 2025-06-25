@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.github.javafaker.Faker;
+
 public class Property_Loader {
 
 	static Properties pro;
@@ -25,4 +27,6 @@ public class Property_Loader {
 		
 		return pro;
 	}
+	
+	
 }

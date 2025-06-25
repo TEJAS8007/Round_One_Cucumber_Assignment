@@ -1,6 +1,7 @@
 package Com.QA.Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -14,7 +15,7 @@ public class Login_Page {
 	By Sign_in_Link=By.xpath("//header//li[@class='authorization-link']/a");
 	By un=By.cssSelector("input#email");
 	By ps=By.cssSelector("input[name='login[password]']");
-	By Sign_in_Button=By.cssSelector("//*[@class='fieldset login']/div[4]/div/button");
+	By Sign_in_Button=By.xpath("//*[@class='fieldset login']/div[4]/div/button");
 	
 	
 	public Login_Page(WebDriver driver) {
@@ -23,7 +24,7 @@ public class Login_Page {
 	}
 	
 	public void click_on_Sign_Link() {
-		WaitUtils.WaitForElementToclick(Sign_in_Button, driver);
+		WaitUtils.WaitForElementToclick(Sign_in_Link, driver);
 		WebElement signIn=driver.findElement(Sign_in_Link);
 		signIn.click();
 	}
@@ -36,5 +37,14 @@ public class Login_Page {
 	public void enter_login_ps(String password) {
 		WebElement pass=driver.findElement(ps);
 		pass.sendKeys(password);
+	}
+	
+	public void click_on_Sign_Button() {
+		
+		WaitUtils.WaitForElementToclick(Sign_in_Button, driver);
+		WebElement signIn=driver.findElement(Sign_in_Button);
+		
+		// using JavScriptExecutor to avoid element.clickInterceptException
+	    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", signIn);
 	}
 }

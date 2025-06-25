@@ -15,11 +15,8 @@ public class Driver_Factory {
 		
 		Properties pro=Property_Loader.init_Prop();
 		
-		ChromeOptions options=new ChromeOptions();
-		options.addArguments("user-data-dir=/path/to/new/profile");
-		
 		if(pro.getProperty("browser").trim().equals("chrome")) {
-			driver=new ChromeDriver(options);
+			driver=new ChromeDriver();
 		}
 		
 		else if(pro.getProperty("browser").trim().equals("firefox")) {
@@ -30,7 +27,6 @@ public class Driver_Factory {
 			System.out.println("Unable to launch Browser....Error");
 		}
 		
-		driver.get(pro.getProperty("url"));
 		
 		return driver;
 	}

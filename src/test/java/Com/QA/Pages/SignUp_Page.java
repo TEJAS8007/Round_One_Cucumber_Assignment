@@ -1,6 +1,7 @@
 package Com.QA.Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -17,8 +18,8 @@ public class SignUp_Page {
 	By ln=By.cssSelector("input#lastname");
 	By email=By.cssSelector("input#email_address");
 	By password=By.cssSelector("input#password");
-	By confirm_Password=By.cssSelector("password-confirmation");
-	By confirm_button=By.cssSelector("button[title='Create an Account']");
+	By confirm_Password=By.cssSelector("input#password-confirmation");
+	By confirm_button=By.xpath("//*[@title='Create an Account']");
 
 	public SignUp_Page(WebDriver driver) {
 		this.driver=driver;
@@ -67,9 +68,26 @@ public class SignUp_Page {
 	}
 	
 	public void click_On_confirm_Button() {
-		
-		WaitUtils.WaitForElementToclick(confirm_button, driver);
-		WebElement confirmbutton=driver.findElement(confirm_button);
-		confirmbutton.click();
+	    try {
+	        Thread.sleep(1000); // Let UI settle
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
+	    }
+
+	    try {
+	        
+	        WaitUtils.Ad_Blocker(driver);
+	    } catch (Exception e) {
+	        System.out.println("Ad not found or already handled.");
+	    }
+
+	    WaitUtils.WaitForElementToclick(confirm_button, driver);    
+	    WebElement confirmbutton = driver.findElement(confirm_button);
+	    
+	    // ✅ using JavScriptExecutor to avoid element.clickInterceptException
+	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", confirmbutton);
+	    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", confirmbutton);
 	}
+
+
 }
